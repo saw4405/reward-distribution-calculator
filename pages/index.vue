@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="12" sm="6">
-        <v-text-field 
+      <v-col cols="12" sm="6"  class="pb-0">
+        <v-text-field
           outlined
           rounded
           color="cyan"
@@ -13,7 +13,7 @@
           @change="calculate()">
         </v-text-field>
       </v-col>
-      <v-col cols="12" sm="6">
+      <v-col cols="12" sm="6"  class="py-0">
         <v-text-field
           outlined
           rounded
