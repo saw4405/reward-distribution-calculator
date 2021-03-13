@@ -4,13 +4,24 @@
       <v-col>
         <v-text-field 
           outlined
-          dense
-          color="green"
+          rounded
+          color="cyan"
           type="number"
-          prepend-icon="mdi-diamond-stone"
-          prepend-inner-icon="mdi-diamond-stone"
+          prepend-inner-icon="mdi-diamond"
           v-model="reward1"
-          clearable/>
+          clearable>
+        </v-text-field>
+      </v-col>
+      <v-col>
+        <v-text-field
+          outlined
+          rounded
+          color="purple"
+          type="number"
+          prepend-inner-icon="mdi-cards-diamond"
+          v-model="reward2"
+          clearable>
+        </v-text-field>
       </v-col>
     </v-row>
     <v-row v-for="(item, index) in items" :key="index">
@@ -23,12 +34,19 @@
             <v-spacer/>
             <v-chip
               outlined
-              color="green"
-              v-if="item.dividend !== null"
+              color="cyan"
+              v-if="item.reward1 !== null"
             >
-              <v-icon left>mdi-diamond-stone</v-icon>
-              {{item.dividend}}
-              <v-icon right>mdi-diamond-stone</v-icon>
+              <v-icon left>mdi-diamond</v-icon>
+              {{item.reward1}}
+            </v-chip>
+            <v-chip
+              outlined
+              color="purple"
+              v-if="item.reward2 !== null"
+            >
+              <v-icon left>mdi-cards-diamond</v-icon>
+              {{item.reward2}}
             </v-chip>
           </v-card-title>
 
@@ -115,35 +133,14 @@ import { Item } from '~/types/item';
 export default Vue.extend({
   data() {
     return {
-      reward1: Number,
-      reward2: Number,
-      items: [
-        {
-          score: null,
-          task: null,
-          dividend: null
-        },
-        {
-          score: null,
-          task: null,
-          dividend: null
-        },
-        {
-          score: null,
-          task: null,
-          dividend: null
-        },
-        {
-          score: null,
-          task: null,
-          dividend: null
-        },
-        {
-          score: null,
-          task: null,
-          dividend: null
-        },
-      ] as Item[],
+      reward1: 0,
+      reward2: 0,
+      items: [] as Item[],
+    }
+  },
+  mounted() {
+    for (let i = 0; i < 10; i++) {
+      this.items.push({score: null, task: null, reward1:null, reward2:null});
     }
   },
   methods: {
@@ -169,7 +166,6 @@ export default Vue.extend({
         const score = totalTask !== 0 ? 
           ((item.score ?? 0) / totalScore + (item.task ?? 0) / totalTask) / 2 :
           (item.score ?? 0) / totalScore;
-        item.dividend = Math.round(score * totalScore);
       }
     }
   },

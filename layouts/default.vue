@@ -1,13 +1,14 @@
 <template>
   <v-app>
     <v-app-bar
-      color="white"
+      color="black"
       flat
       :src="image_src"
       prominent
       app
+      dark
     >
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title v-text="title" class="white--text font-weight-black" />
     </v-app-bar>
     
     <v-main>
@@ -22,8 +23,8 @@
 export default {
   data () {
     return {
-      title: 'reward-distribution-calculator',
-      image_src: require("../assets/011.jpg")
+      title: 'reward distribution calculator',
+      image_src: require("../assets/header.jpg")
     }
   }
 }

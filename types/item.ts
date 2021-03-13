@@ -1,5 +1,6 @@
 export interface Item {
     score: number | null;
     task: number | null;
-    dividend: number | null;
+    reward1: number | null;
+    reward2: number | null;
   }
