@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="12" sm="6"  class="pb-0">
+      <v-col class="pb-0">
         <v-text-field
           outlined
           rounded
@@ -13,7 +13,7 @@
           @change="calculate()">
         </v-text-field>
       </v-col>
-      <v-col cols="12" sm="6"  class="py-0">
+      <v-col class="pb-0">
         <v-text-field
           outlined
           rounded
@@ -55,22 +55,22 @@
           <v-card-text class="pb-0">
             <v-container>
               <v-row dense>
-                <v-col cols="12" sm="6">
+                <v-col>
                   <v-text-field
                     type="number"
                     prepend-icon="mdi-trophy-variant"
                     label="Trophy"
                     v-model="item.score"
-                    suffix="points"
+                    suffix="個"
                     clearable/>
                 </v-col>
-                <v-col cols="12" sm="6">
+                <v-col>
                   <v-text-field
                     type="number"
                     prepend-icon="mdi-format-list-checks"
                     label="Task" 
                     v-model="item.task"
-                    suffix="times"
+                    suffix="個"
                     clearable/>
                 </v-col>
               </v-row>
@@ -99,22 +99,22 @@
               <v-card-text class="pb-0">
                 <v-container>
                   <v-row dense>
-                    <v-col cols="12" sm="6">
+                    <v-col>
                       <v-text-field 
                         type="number"
                         prepend-icon="mdi-trophy-variant"
                         label="Trophy"
                         :value="totalScore"
-                        suffix="points"
+                        suffix="個"
                         readonly/>
                     </v-col>
-                    <v-col cols="12" sm="6">
+                    <v-col>
                       <v-text-field 
                         type="number"
                         prepend-icon="mdi-format-list-checks"
                         label="Task" 
                         :value="totalTask"
-                        suffix="times"
+                        suffix="個"
                         readonly/>
                     </v-col>
                   </v-row>
