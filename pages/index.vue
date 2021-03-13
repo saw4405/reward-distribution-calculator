@@ -9,7 +9,8 @@
           type="number"
           prepend-inner-icon="mdi-diamond"
           v-model="reward1"
-          clearable>
+          clearable
+          @change="calculate()">
         </v-text-field>
       </v-col>
       <v-col>
@@ -20,7 +21,8 @@
           type="number"
           prepend-inner-icon="mdi-cards-diamond"
           v-model="reward2"
-          clearable>
+          clearable
+          @change="calculate()">
         </v-text-field>
       </v-col>
     </v-row>
@@ -144,7 +146,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    calculation(){
+    calculate(){
 
       const totalScore = this.items.reduce(function(sum:number, element:Item){
         return sum + Number(element.score ?? 0);
@@ -163,16 +165,21 @@ export default Vue.extend({
           continue;
         }
 
-        const score = totalTask !== 0 ? 
+        const per = totalScore !== 0 && totalTask !== 0 ? 
           ((item.score ?? 0) / totalScore + (item.task ?? 0) / totalTask) / 2 :
-          (item.score ?? 0) / totalScore;
+           totalScore !== 0 ? 
+          (item.score ?? 0) / totalScore :
+          (item.task ?? 0) / totalTask;
+
+        item.reward1 = this.reward1 !== null ? this.reward1 * per : null;
+        item.reward2 = this.reward2 !== null ? this.reward2 * per : null;
       }
     }
   },
   computed: {
     totalScore: {
       get(): number {
-        this.calculation();
+        this.calculate();
         return this.items.reduce(function(sum:number, element:Item){
           return sum + Number(element.score ?? 0);
         }, 0);
@@ -180,7 +187,7 @@ export default Vue.extend({
     },
     totalTask: {
       get(): number {
-        this.calculation();
+        this.calculate();
         return this.items.reduce(function(sum:number, element:Item){
           return sum + Number(element.task ?? 0);
       }, 0);
