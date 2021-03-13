@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col>
+      <v-col cols="12" sm="6">
         <v-text-field 
           outlined
           rounded
@@ -13,7 +13,7 @@
           @change="calculate()">
         </v-text-field>
       </v-col>
-      <v-col>
+      <v-col cols="12" sm="6">
         <v-text-field
           outlined
           rounded
@@ -55,7 +55,7 @@
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col>
+                <v-col cols="12" sm="6">
                   <v-text-field 
                     type="number"
                     prepend-icon="mdi-trophy-variant"
@@ -64,7 +64,7 @@
                     suffix="points"
                     clearable/>
                 </v-col>
-                <v-col>
+                <v-col cols="12" sm="6">
                   <v-text-field 
                     type="number"
                     prepend-icon="mdi-format-list-checks"
@@ -99,7 +99,7 @@
               <v-card-text>
                 <v-container>
                   <v-row>
-                    <v-col>
+                    <v-col cols="12" sm="6">
                       <v-text-field 
                         type="number"
                         prepend-icon="mdi-trophy-variant"
@@ -108,7 +108,7 @@
                         suffix="points"
                         readonly/>
                     </v-col>
-                    <v-col>
+                    <v-col cols="12" sm="6">
                       <v-text-field 
                         type="number"
                         prepend-icon="mdi-format-list-checks"
@@ -171,8 +171,8 @@ export default Vue.extend({
           (item.score ?? 0) / totalScore :
           (item.task ?? 0) / totalTask;
 
-        item.reward1 = this.reward1 !== null ? this.reward1 * per : null;
-        item.reward2 = this.reward2 !== null ? this.reward2 * per : null;
+        item.reward1 = this.reward1 !== null ? Math.round(this.reward1 * per) : null;
+        item.reward2 = this.reward2 !== null ? Math.round(this.reward2 * per) : null;
       }
     }
   },

@@ -1,12 +1,11 @@
 <template>
   <v-app>
     <v-app-bar
+      app
+      dark
       color="black"
       flat
       :src="image_src"
-      prominent
-      app
-      dark
     >
       <v-toolbar-title v-text="title" class="white--text font-weight-black" />
     </v-app-bar>
