@@ -61,7 +61,6 @@
                     prepend-icon="mdi-trophy-variant"
                     label="Trophy"
                     v-model="item.score"
-                    suffix="個"
                     clearable/>
                 </v-col>
                 <v-col>
@@ -70,7 +69,6 @@
                     prepend-icon="mdi-format-list-checks"
                     label="Task" 
                     v-model="item.task"
-                    suffix="個"
                     clearable/>
                 </v-col>
               </v-row>
@@ -105,7 +103,6 @@
                         prepend-icon="mdi-trophy-variant"
                         label="Trophy"
                         :value="totalScore"
-                        suffix="個"
                         readonly/>
                     </v-col>
                     <v-col>
@@ -114,7 +111,6 @@
                         prepend-icon="mdi-format-list-checks"
                         label="Task" 
                         :value="totalTask"
-                        suffix="個"
                         readonly/>
                     </v-col>
                   </v-row>
