@@ -26,10 +26,10 @@
         </v-text-field>
       </v-col>
     </v-row>
-    <v-row v-for="(item, index) in items" :key="index">
+    <v-row dense v-for="(item, index) in items" :key="index">
       <v-col>
         <v-card>
-          <v-card-title>
+          <v-card-title class="pb-0">
             <v-icon left large>mdi-account</v-icon>
             Member
             {{index + 1}}
@@ -52,11 +52,11 @@
             </v-chip>
           </v-card-title>
 
-          <v-card-text>
+          <v-card-text class="pb-0">
             <v-container>
-              <v-row>
+              <v-row dense>
                 <v-col cols="12" sm="6">
-                  <v-text-field 
+                  <v-text-field
                     type="number"
                     prepend-icon="mdi-trophy-variant"
                     label="Trophy"
@@ -65,7 +65,7 @@
                     clearable/>
                 </v-col>
                 <v-col cols="12" sm="6">
-                  <v-text-field 
+                  <v-text-field
                     type="number"
                     prepend-icon="mdi-format-list-checks"
                     label="Task" 
@@ -86,19 +86,19 @@
       app
       class="py-0 px-0"
     >
-      <v-container fluid>
+      <v-container fluid class="py-0">
         <v-row>
           <v-col>
             <v-card color="transparent" flat>
-              <v-card-title>
+              <v-card-title class="pb-0">
                 <v-icon left large>mdi-account-group</v-icon>
                 Total
                 <v-spacer/>
               </v-card-title>
 
-              <v-card-text>
+              <v-card-text class="pb-0">
                 <v-container>
-                  <v-row>
+                  <v-row dense>
                     <v-col cols="12" sm="6">
                       <v-text-field 
                         type="number"
