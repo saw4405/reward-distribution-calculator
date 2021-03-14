@@ -5,6 +5,7 @@
         <v-text-field
           outlined
           rounded
+          dense
           color="cyan"
           type="number"
           prepend-inner-icon="mdi-diamond"
@@ -17,6 +18,7 @@
         <v-text-field
           outlined
           rounded
+          dense
           color="purple"
           type="number"
           prepend-inner-icon="mdi-cards-diamond"
