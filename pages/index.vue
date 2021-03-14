@@ -26,55 +26,11 @@
         </v-text-field>
       </v-col>
     </v-row>
-    <v-row dense v-for="(item, index) in items" :key="index">
+    <v-row dense v-for="item in items" :key="item.name">
       <v-col>
-        <v-card>
-          <v-card-title class="pb-0">
-            <v-icon left large>mdi-account</v-icon>
-            Member
-            {{index + 1}}
-            <v-spacer/>
-            <v-chip
-              outlined
-              color="cyan"
-              v-if="item.reward1 !== null"
-            >
-              <v-icon left>mdi-diamond</v-icon>
-              {{item.reward1}}
-            </v-chip>
-            <v-chip
-              outlined
-              color="purple"
-              v-if="item.reward2 !== null"
-            >
-              <v-icon left>mdi-cards-diamond</v-icon>
-              {{item.reward2}}
-            </v-chip>
-          </v-card-title>
-
-          <v-card-text class="pb-0">
-            <v-container>
-              <v-row dense>
-                <v-col>
-                  <v-text-field
-                    type="number"
-                    prepend-icon="mdi-trophy-variant"
-                    label="Trophy"
-                    v-model="item.score"
-                    clearable/>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    type="number"
-                    prepend-icon="mdi-format-list-checks"
-                    label="Task" 
-                    v-model="item.task"
-                    clearable/>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card-text>
-        </v-card>
+        <Card :item="item" :clearable="true" :readonly="false" :flat="false">
+          <v-icon left large>mdi-account</v-icon>
+        </Card>
       </v-col>
     </v-row>
     
@@ -87,36 +43,9 @@
       <v-container fluid class="py-0">
         <v-row>
           <v-col>
-            <v-card color="transparent" flat>
-              <v-card-title class="pb-0">
-                <v-icon left large>mdi-account-group</v-icon>
-                Total
-                <v-spacer/>
-              </v-card-title>
-
-              <v-card-text class="pb-0">
-                <v-container>
-                  <v-row dense>
-                    <v-col>
-                      <v-text-field 
-                        type="number"
-                        prepend-icon="mdi-trophy-variant"
-                        label="Trophy"
-                        :value="totalScore"
-                        readonly/>
-                    </v-col>
-                    <v-col>
-                      <v-text-field 
-                        type="number"
-                        prepend-icon="mdi-format-list-checks"
-                        label="Task" 
-                        :value="totalTask"
-                        readonly/>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card-text>
-            </v-card>
+            <Card :item="totalItem" :clearable="false" :readonly="true" :flat="true">
+              <v-icon left large>mdi-account-group</v-icon>
+            </Card>
           </v-col>
         </v-row>
       </v-container>
@@ -127,8 +56,12 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Item } from '~/types/item';
+import Card from '~/components/card.vue';
 
 export default Vue.extend({
+  components: {
+    Card
+  },
   data() {
     return {
       reward1: 0,
@@ -138,7 +71,7 @@ export default Vue.extend({
   },
   mounted() {
     for (let i = 0; i < 10; i++) {
-      this.items.push({score: null, task: null, reward1:null, reward2:null});
+      this.items.push({name:"Member" + (i + 1), score: null, task: null, reward1: null, reward2: null});
     }
   },
   methods: {
@@ -173,20 +106,25 @@ export default Vue.extend({
     }
   },
   computed: {
-    totalScore: {
-      get(): number {
+    totalItem: {
+      get(): Item {
         this.calculate();
-        return this.items.reduce(function(sum:number, element:Item){
+
+        const totalScore = this.items.reduce(function(sum:number, element:Item){
           return sum + Number(element.score ?? 0);
         }, 0);
-      }
-    },
-    totalTask: {
-      get(): number {
-        this.calculate();
-        return this.items.reduce(function(sum:number, element:Item){
+
+        const totalTask = this.items.reduce(function(sum:number, element:Item){
           return sum + Number(element.task ?? 0);
-      }, 0);
+        }, 0);
+
+        return {
+          name: 'Total',
+          score: totalScore,
+          task: totalTask,
+          reward1: null,
+          reward2: null
+        };
       }
     },
   }
